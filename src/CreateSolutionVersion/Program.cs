@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 
@@ -18,25 +19,37 @@ namespace CreateSolutionVersion
 
 
             string templateFilePath = System.Environment.GetEnvironmentVariable("INPUT_TEMPLATE_FILE");
-            if (string.IsNullOrEmpty(templateFilePath)) templateFilePath =  @"SolutionVersion.template.txt";
             string outputFilePath = System.Environment.GetEnvironmentVariable("INPUT_OUTPUT_FILE");
             if (string.IsNullOrEmpty(outputFilePath)) outputFilePath = @"SolutionVersion.cs";
             string version = System.Environment.GetEnvironmentVariable("INPUT_VERSION");
             if (string.IsNullOrEmpty(version)) version = "0.0.0.0";
 
-            context.Version= version;
-           
+            context.Version = version;
+
             if (!string.IsNullOrEmpty(context.Version))
             {
                 context.BuildDate = DateTime.Now;
-                var file = System.IO.File.ReadAllText(templateFilePath);
-                var results = Stubble.Core.StaticStubbleRenderer.Render(file, context);
+                var template = GetDefaultTemplate();
+                if (!string.IsNullOrEmpty(templateFilePath))
+                {
+                    template = System.IO.File.ReadAllText(templateFilePath);
+                }
+
+                var results = Stubble.Core.StaticStubbleRenderer.Render(template, context);
                 Console.WriteLine(results);
             }
             else
             {
                 Environment.ExitCode = -1;
             }
+        }
+
+        public static string GetDefaultTemplate()
+        {
+            var stream = System.Reflection.Assembly.GetExecutingAssembly()
+                .GetManifestResourceStream("CreateSolutionVersion.SolutionVersion.template.txt");
+            var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
     }
 }

@@ -15,9 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="SolutionVersion.template.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="SolutionVersion.template.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
