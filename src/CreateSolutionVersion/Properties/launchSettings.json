@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CreateSolutionVersion": {
+      "commandName": "Project",
+      "commandLineArgs": "-v 2.2.2.2"
+    }
+  }
+}

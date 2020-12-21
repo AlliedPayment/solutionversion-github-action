@@ -1,0 +1,19 @@
+name: 'AlliedPayment Create Solution Version Actions'
+description: 'Creates SolutionVersion.cs.'
+author:  'AlliedPayment'
+branding:
+  icon: 'cloud'
+  color: 'purple'
+inputs:
+  version: 
+    description: 'version number'
+    required: true 
+  template_file:
+    description: 'template to create SolutionVersion.cs'
+    required: false 
+  output_file:
+    description: 'file to output'
+    required: false  
+runs:
+  using: 'docker'
+  image: './Dockerfile'
