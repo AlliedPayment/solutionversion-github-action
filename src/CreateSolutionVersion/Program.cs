@@ -17,9 +17,12 @@ namespace CreateSolutionVersion
             var context = new Context();
 
 
-            string templateFilePath = System.Environment.GetEnvironmentVariable("INPUT_TEMPLATE_FILE") ?? @"SolutionVersion.template.txt";
-            string outputFilePath = System.Environment.GetEnvironmentVariable("INPUT_OUTPUT_FILE") ?? @"SolutionVersion.cs";
-            string version = System.Environment.GetEnvironmentVariable("INPUT_VERSION") ?? "0.0.0.0";
+            string templateFilePath = System.Environment.GetEnvironmentVariable("INPUT_TEMPLATE_FILE");
+            if (string.IsNullOrEmpty(templateFilePath)) templateFilePath =  @"SolutionVersion.template.txt";
+            string outputFilePath = System.Environment.GetEnvironmentVariable("INPUT_OUTPUT_FILE");
+            if (string.IsNullOrEmpty(outputFilePath)) outputFilePath = @"SolutionVersion.cs";
+            string version = System.Environment.GetEnvironmentVariable("INPUT_VERSION");
+            if (string.IsNullOrEmpty(version)) version = "0.0.0.0";
 
             context.Version= version;
            
