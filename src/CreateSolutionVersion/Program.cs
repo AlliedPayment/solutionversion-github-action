@@ -37,6 +37,7 @@ namespace CreateSolutionVersion
 
                 var results = Stubble.Core.StaticStubbleRenderer.Render(template, context);
                 Console.WriteLine(results);
+                System.IO.File.WriteAllText(outputFilePath, results);
             }
             else
             {
