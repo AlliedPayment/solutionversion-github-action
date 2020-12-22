@@ -26,5 +26,5 @@ using Allied.Core;
 [assembly: AssemblyDescriptionAttribute("BillPay is a product of Allied Payment Network")]
 [assembly: AssemblyTrademarkAttribute("BillPay - Allied Payment Network")]
 [assembly: AssemblyCopyrightAttribute("Copyright ©  2020 Allied Payment Network, - Original author or authors")]
-[assembly: Allied.Core.BuildDateAttribute(""{{ BuildDate }}"")]
+[assembly: Allied.Core.BuildDateAttribute("{{ BuildDate }}")]
 
